@@ -6,6 +6,8 @@ import {AppRouting} from './app.routing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapComponent} from './map/map.component';
 import {RouterModule} from '@angular/router';
+import {MapService} from './map/shared/map.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,9 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     AppRouting,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

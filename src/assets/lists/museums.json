@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "gps": "50.082688,14.419343",
+    "name": "Lego, Prague",
+    "description": "Музей Лего"
+  },
+  {
+    "id": 2,
+    "gps": "49.455306,11.076245",
+    "name": "Spielzeugmuseum",
+    "description": "Нюрнбергский музей игрушек"
+  },
+  {
+    "id": 3,
+    "gps": "49.893247,10.887174",
+    "name": "Altes Rathaus",
+    "description": "Старая ратуша Бамберга"
+  },
+  {
+    "id": 4,
+    "gps": "50.128472,8.656848",
+    "name": "Palmengarten",
+    "description": "Сад пальм в Франкфурте-на-Майне"
+  },
+  {
+    "id": 5,
+    "gps": "51.448955,7.009144",
+    "name": "Museum Folkwang",
+    "description": "Музей современного искусства в Эссене"
+  },
+  {
+    "id": 6,
+    "gps": "48.171298,11.499816",
+    "name": "Schloss Nymphenburg",
+    "description": "Дворец Нимфенбург в Мюнхене"
+  },
+  {
+    "id": 7,
+    "gps": "48.379384,16.309034",
+    "name": "Kreuzenstein Castle",
+    "description": "Замок Кройцштайн в Леобендорфе, Австрия"
+  }
+]
