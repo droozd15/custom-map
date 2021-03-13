@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+
+declare var ymaps: any;
 
 @Component({
   selector: 'map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
+  public map: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    ymaps.ready().then(() => {
+      this.map = new ymaps.Map('map', {
+        center: [50.450100, 30.523400],
+        zoom: 12
+      });
+    });
   }
-
 }
