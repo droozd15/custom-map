@@ -5,12 +5,12 @@ import {MapObject} from './map-object.model';
 
 @Injectable()
 export class MapService {
-  private urlMuseum = '../../../assets/lists/museums.json';
+  private urlMuseum = '../../../assets/lists/';
 
   constructor(private http: HttpClient) {
   }
 
-  public getMuseumObjects(): Observable<MapObject[]> {
-    return this.http.get<any[]>(this.urlMuseum);
+  public getMuseumObjects(type: string): Observable<MapObject[]> {
+    return this.http.get<any[]>(`${this.urlMuseum}` + type + '.json');
   }
 }

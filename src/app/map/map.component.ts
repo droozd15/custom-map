@@ -12,14 +12,24 @@ declare var ymaps: any;
 export class MapComponent implements OnInit {
   public map: any;
   public mapObject: MapObject[];
+  public placeMarks: any[] = [];
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
-    this.getGeoObjects();
+    // this.getGeoObjects();
+    this.initMap();
 
+  }
+
+  initMap() {
     ymaps.ready().then(() => {
+      if (this.map) {
+        this.map.destroy();
+        this.map = null;
+      }
+
       this.map = new ymaps.Map('map', {
         center: [50, 15],
         zoom: 5
@@ -27,22 +37,39 @@ export class MapComponent implements OnInit {
 
       this.map.behaviors.disable('scrollZoom');
       this.map.controls.add('zoomControl');
-      this.mapObject.forEach(place => {
-        const gps = place.gps.split(',', 2);
-        let x = parseFloat(gps[0]);
-        let y = parseFloat(gps[1]);
-
-        const placemark = new ymaps.Placemark([x, y]);
-        this.map.geoObjects.add(placemark);
-      })
 
     });
   }
 
-  getGeoObjects() {
-    this.mapService.getMuseumObjects().subscribe(data => {
+  getGeoObjects(type: string) {
+    this.mapService.getMuseumObjects(type).subscribe(data => {
       this.mapObject = data;
       console.log(data);
+      if (this.mapObject) {
+        this.removePlaceMark();
+        this.mapObject.forEach(place => {
+          const gps = place.gps.split(',', 2);
+          let x = parseFloat(gps[0]);
+          let y = parseFloat(gps[1]);
+
+          const placemark = new ymaps.Placemark([x, y], {
+            balloonContent: place.description
+          });
+          this.placeMarks.push(placemark);
+          this.map.geoObjects.add(placemark);
+        });
+      }
+
+    });
+    //this.initMap();
+
+    console.log(this.map.geoObjects);
+
+  }
+
+  removePlaceMark() {
+    this.placeMarks.forEach(mark => {
+      this.map.geoObjects.remove(mark);
     });
   }
 }
