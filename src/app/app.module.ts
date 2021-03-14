@@ -8,6 +8,8 @@ import {MapComponent} from './map/map.component';
 import {RouterModule} from '@angular/router';
 import {MapService} from './map/shared/map.service';
 import {HttpClientModule} from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRouting,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
+    MatButtonModule
   ],
   providers: [MapService],
   bootstrap: [AppComponent]
