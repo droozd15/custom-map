@@ -8,14 +8,24 @@
 }
 
 .button-group {
+  display: flex;
   flex-direction: row;
 
   &__item {
-    width: 90%;
+    width: 40%;
     height: 40px;
 
     &_margin {
       margin: 10px auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    &__item {
+      width: 90%;
     }
   }
 }
