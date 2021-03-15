@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MapService} from './shared/map.service';
 import {MapObject} from './shared/map-object.model';
+import {Subscription} from 'rxjs';
 
 declare var ymaps: any;
 
@@ -9,8 +10,9 @@ declare var ymaps: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   public map: any;
+  mapSubscription$: Subscription;
   public mapObject: MapObject[];
   public placeMarks: any[] = [];
 
@@ -18,7 +20,6 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getGeoObjects();
     this.initMap();
 
   }
@@ -42,9 +43,11 @@ export class MapComponent implements OnInit {
   }
 
   getGeoObjects(type: string) {
-    this.mapService.getMuseumObjects(type).subscribe(data => {
+    if (this.mapSubscription$) {
+      this.mapSubscription$.unsubscribe();
+    }
+    this.mapSubscription$ = this.mapService.getMuseumObjects(type).subscribe(data => {
       this.mapObject = data;
-      console.log(data);
       if (this.mapObject) {
         this.removePlaceMark();
         this.mapObject.forEach(place => {
@@ -61,15 +64,17 @@ export class MapComponent implements OnInit {
       }
 
     });
-    //this.initMap();
-
-    console.log(this.map.geoObjects);
-
   }
 
   removePlaceMark() {
     this.placeMarks.forEach(mark => {
       this.map.geoObjects.remove(mark);
     });
+  }
+
+  ngOnDestroy() {
+    if (this.mapSubscription$) {
+      this.mapSubscription$.unsubscribe();
+    }
   }
 }
