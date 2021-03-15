@@ -1,16 +1,21 @@
 .map {
-  width: 800px;
+  width: 90%;
   height: 400px;
-  margin-right: 20px;
+
+  &-margin {
+    margin: 20px auto;
+  }
 }
 
-.button {
-  //font-family: 'Gotham Pro', sans-serif;
- // font-size: 20px;
+.button-group {
+  flex-direction: row;
 
-  margin: 10px 0;
+  &__item {
+    width: 90%;
+    height: 40px;
 
-  width: 200px;
-  height: 40px;
+    &_margin {
+      margin: 10px auto;
+    }
+  }
 }
-

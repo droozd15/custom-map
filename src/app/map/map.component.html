@@ -1,7 +1,15 @@
-<div fxLayout="row">
-  <div class="map" id="map"></div>
-  <div fxLayout="column">
-    <button mat-raised-button class="button" (click)="getGeoObjects('museums')">Музеи</button>
-    <button mat-raised-button class="button" (click)="getGeoObjects('bars')">Бары</button>
+<div fxLayout="column">
+  <div class="map map-margin" id="map"></div>
+  <div class="button-group" fxLayout="column">
+    <button mat-raised-button
+            class="button-group__item button-group__item_margin"
+            (click)="getGeoObjects('museums')">
+      Музеи
+    </button>
+    <button mat-raised-button
+            class="button-group__item button-group__item_margin"
+            (click)="getGeoObjects('bars')">
+      Бары
+    </button>
   </div>
 </div>
